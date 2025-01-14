@@ -9,16 +9,16 @@ export default function MainPage() {
     {
       attribute: "Voltage",
       value: 0,
-      lowValue: 5,
-      alertValue: 12,
-      warningValue: 15,
+      lowValue: 9,
+      alertValue: 14,
+      warningValue: 16,
       maxValue: 20,
     },
     {
       attribute: "Current",
       value: 0,
       lowValue: 0,
-      alertValue: 8,
+      alertValue: 6,
       warningValue: 10,
       maxValue: 20,
     },
@@ -34,12 +34,13 @@ export default function MainPage() {
       attribute: "Temperature",
       value: 0,
       lowValue: 0,
-      alertValue: 85,
+      alertValue: 40,
       warningValue: 90,
       maxValue: 120,
     },
   ]);
   const [kwh, setKwh] = useState(0);
+  const [robotStatus, setRobotStatus] = useState(0);
   const [lineChartData, setLineChartData] = useState([]);
   const [consoleMessageData, setConsoleMessageData] = useState(
     Array(5).fill(
@@ -59,6 +60,7 @@ export default function MainPage() {
         kwh={kwh}
         lineChartData={lineChartData}
         consoleMessageData={consoleMessageData}
+        robotStatus={robotStatus}
       />
       <DataStore
         data={data}

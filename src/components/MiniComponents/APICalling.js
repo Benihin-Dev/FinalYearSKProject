@@ -19,22 +19,22 @@ export default function APICalling({
         );
 
         const reversedData = [...response.data.feeds].reverse(); // Create a new reversed array
-        //console.log(reversedData); // Console log the reversed array
+        console.log(reversedData); // Console log the reversed array
         setData(reversedData);
         setDataForIndicators([
           {
             attribute: "Voltage",
             value: reversedData[0].field2,
-            lowValue: 5,
-            alertValue: 12,
-            warningValue: 15,
+            lowValue: 9,
+            alertValue: 14,
+            warningValue: 16,
             maxValue: 20,
           },
           {
             attribute: "Current",
             value: reversedData[0].field3,
             lowValue: 0,
-            alertValue: 8,
+            alertValue: 6,
             warningValue: 10,
             maxValue: 20,
           },

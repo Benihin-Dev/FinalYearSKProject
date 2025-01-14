@@ -180,32 +180,6 @@ export default function DataStore({
     setData();
   }, [data]);
 
-  function updateThingSpeak() {
-    const apiKey = "2NIFAKSSUOAXW36K";
-
-    // Generate random values within the specified ranges
-    const field1 = Math.floor(Math.random() * 91); // 0-90
-    const field2 = Math.floor(Math.random() * 16); // 0-15
-    const field3 = Math.floor(Math.random() * 16); // 0-15
-    const field4 = Math.floor(Math.random() * 10000); // 0-9999
-    const field5 = Math.floor(Math.random() * 11); // 0-10
-    const field6 = Math.floor(Math.random() * 11); // 0-10
-    const field7 = Math.floor(Math.random() * 11); // 0-10
-    const field8 = Math.floor(Math.random() * 91); // 0-90
-
-    // Construct the URL
-    const url = `https://api.thingspeak.com/update?api_key=${apiKey}&field1=${field1}&field2=${field2}&field3=${field3}&field4=${field4}&field5=${field5}&field6=${field6}&field7=${field7}&field8=${field8}`;
-
-    // Send the request
-    fetch(url)
-      .then((response) => response.json())
-      .then((data) => console.log(`Update successful: ${data}`))
-      .catch((error) => console.error("Error updating ThingSpeak:", error));
-  }
-
-  // Call the function every 30 seconds
-  setInterval(updateThingSpeak, 5000);
-
   return (
     <div
       // className=" h-20 bg-white w-full"
