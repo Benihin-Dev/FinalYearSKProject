@@ -54,6 +54,8 @@ export default function MainPage() {
         setKwh={setKwh}
         data={data}
         setData={setData}
+        robotStatus={robotStatus}
+        setRobotStatus={setRobotStatus}
       />
       <HomePage
         dataForIndicators={dataForIndicators}

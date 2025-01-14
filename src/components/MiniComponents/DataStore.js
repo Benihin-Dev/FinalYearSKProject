@@ -117,7 +117,9 @@ export default function DataStore({
     // Map the extracted items into the desired format
     const result = data.map(
       (item, index) =>
-        ` [ ${convertUKToSriLankaTime(item.created_at)} ] : ${item.field6}  `
+        ` [ ${convertUKToSriLankaTime(item.created_at)} ] : ${
+          item.field8 % 1000
+        }  `
     ); // Get field1 value
 
     return result;

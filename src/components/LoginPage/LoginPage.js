@@ -1,37 +1,92 @@
 import React, { useState } from "react";
+import { FaRegEye } from "react-icons/fa";
 
-export default function LoginPage({ loginStatus, setLoginStatus }) {
+export default function LoginPage({ isLogged, setIsLogged }) {
+  const [showPassword, setShowPassword] = useState(false);
+  const [data, setData] = useState({});
+  const [loginState, setLoginState] = useState("non");
+
+  const handleOnChange = (e) => {
+    const { name, value } = e.target;
+
+    setData((prevState) => ({
+      ...prevState, // Spread the previous state
+      [name]: value, // Update the specific field
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (data.username === "admin" && data.password === "4dofpppr") {
+      setIsLogged(true);
+      setLoginState("success");
+      console.log("okay");
+    } else {
+      setLoginState("faild");
+    }
+  };
 
   return (
     <div
       className={` ${
-        loginStatus ? "loginPage" : ""
-      } overflow-hidden w-full h-screen fixed top-0 left-0 `}
+        isLogged ? "loginPage" : ""
+      } overflow-hidden w-full h-screen z-20 fixed top-0 left-0 `}
     >
-      <div className=" bg-[#00000089] w-full h-full relative">
+      <div className=" bg-[#111525] w-full h-full relative">
         <div className=" w-full h-full  relative flex items-center justify-center ">
-          <div className={` bg-[#00000071] p-6 rounded-md w-fit `}>
-            <input
-              type="text"
-              placeholder="_name"
-              autoFocus
-              className=" mb-5 border-gray-600 text-base focus:border-gray-400 hover:border-gray-400 duration-300    w-[80vw]  sm:w-80 text-white font-thin tracking-wider pt-2 pb-[2px] outline-none bg-transparent border rounded-md px-3"
-            />
-            <br />
-            <input
-              type="password"
-              placeholder="_password"
-              className=" mb-6 border-gray-600 focus:border-gray-400 hover:border-gray-400 duration-300  w-[80vw] sm:w-80  text-white font-thin tracking-wider pt-2 pb-[2px] outline-none bg-transparent border rounded-md px-3"
-            />
-            <br />
-            <button
-              onClick={() => {
-                setLoginStatus(true);
-              }}
-              className="text-white font-medium  py-2 duration-300  shadow-white hover:shadow-md bg-[#2d259e] rounded-md  w-[80vw]  sm:w-80"
-            >
-              Login
-            </button>
+          <div className={` bg-[#111525] p-6 rounded-md w-fit `}>
+            <p className=" w-96 pb-10 text-center text-gray-300 font-montserrat text-3xl">
+              Robo-Sense-IOT
+            </p>
+            <form action="" onSubmit={handleSubmit}>
+              <input
+                type="text"
+                name="username"
+                placeholder="_username"
+                autoFocus
+                required
+                onChange={handleOnChange}
+                className={`  ${
+                  loginState === "faild"
+                    ? " border-red-500"
+                    : loginState === "success"
+                    ? " border-gray-600"
+                    : " border-gray-600"
+                } mb-2  text-base focus:border-gray-400 hover:border-gray-400 duration-300    w-[80vw]  sm:w-96 text-white font-thin tracking-wider pt-2 pb-[2px] outline-none bg-transparent border rounded-md px-3 `}
+              />
+              <br />
+              <div className=" mb-5 relative w-[80vw] sm:w-96">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  placeholder="_password"
+                  required
+                  onChange={handleOnChange}
+                  className={`  ${
+                    loginState === "faild"
+                      ? " border-red-500"
+                      : loginState === "success"
+                      ? " border-gray-600"
+                      : " border-gray-600"
+                  } focus:border-gray-400 hover:border-gray-400 duration-300   w-full  text-white font-thin tracking-wider pt-2 pb-[2px] outline-none bg-transparent border rounded-md px-3 `}
+                />
+                <FaRegEye
+                  onClick={() => {
+                    setShowPassword(!showPassword);
+                  }}
+                  className=" absolute top-1/2 right-2 -translate-y-1/2 size-5 text-gray-400 hover:text-gray-200 duration-300 cursor-pointer"
+                />
+              </div>
+              {loginState === "faild" && (
+                <p className="   pb-1 text-red-300 tracking-wide text-sm font-thin">
+                  Please check your usaername & password{" "}
+                </p>
+              )}
+              <button className="text-white font-medium  py-2 duration-300  shadow-white hover:shadow-md bg-[#2d259e] rounded-md  w-[80vw]  sm:w-96">
+                Login
+              </button>
+            </form>
           </div>
         </div>
       </div>
